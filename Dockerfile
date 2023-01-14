@@ -3,4 +3,4 @@ WORKDIR /app
 COPY . .
 RUN npm install --production
 CMD npm run build && node /app/dist/server/entry.mjs
-EXPOSE 3000
+EXPOSE 80
