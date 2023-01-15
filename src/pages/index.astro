@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import {prisma} from "../db";
 
 function scoreToClass(score: number) {
   if (score < 60) {
@@ -13,7 +14,13 @@ function scoreToClass(score: number) {
   }
 }
 
-const {score} = await fetch("http://192.168.0.101/air-data/latest").then(res => res.json());
+const data = await prisma.awair.findFirst({
+  orderBy: {
+    time: "desc"
+  }
+});
+
+const score = data?.score || 0;
 
 ---
 <Layout title="Ihar Trafimovich">
