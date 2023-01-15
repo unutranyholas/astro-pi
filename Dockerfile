@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:18-lts
 WORKDIR /app
 COPY . .
 RUN npm install --omit=dev
