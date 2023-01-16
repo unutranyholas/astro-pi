@@ -1,8 +1,10 @@
 FROM node:lts
 WORKDIR /app
-COPY . .
+COPY package.json package.json
+COPY package-lock.json package-lock.json
 RUN npm install --omit=dev
-RUN npm i -g prisma
+COPY . .
+RUN npm install prisma -g
 RUN prisma generate
 RUN npm run build
 CMD node /app/dist/server/entry.mjs
