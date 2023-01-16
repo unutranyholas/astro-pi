@@ -6,6 +6,7 @@ RUN npm install --omit=dev
 COPY . .
 RUN npm install prisma -g
 RUN prisma generate
+RUN prisma db push
 RUN npm run build
 CMD node /app/dist/server/entry.mjs
 EXPOSE 3000
